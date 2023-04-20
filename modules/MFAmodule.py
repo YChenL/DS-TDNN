@@ -3,12 +3,13 @@ import torch.nn as nn
 import torch.nn.functional as F
 
 
+
 class att_TDNN(nn.Module):
-    def __init__(self, C, F):
+    def __init__(self, C, F, CE):
         super().__init__() 
         dim = int(C*F)
         self.mlp  = nn.Linear(dim, dim) 
-        self.TDNN = nn.Conv1d(F, 1, kernel_size=1)
+        self.TDNN = nn.Conv1d(dim, CE, kernel_size=1)
         
     def FCA(self, x, B, C, F):
         # time dimension GAP, x=[B, C, Freq, Time]
@@ -19,10 +20,10 @@ class att_TDNN(nn.Module):
         
     def forward(self, x):
         B, C, F, T = x.shape
-        x = self.FCA(x, B, C, F).view(-1, F, T) # [BC, F, T]
-        x = self.TDNN(x).view(B, C, 1, T) 
+        x = self.FCA(x, B, C, F).view(B, -1, T) # [BC, F, T]
+        x = self.TDNN(x).view(B, -1, 1, T) 
         return x
-
+    
 
     
 class MFAmodule(nn.Module):
@@ -34,7 +35,7 @@ class MFAmodule(nn.Module):
         super().__init__()
         self.conv1 = nn.Conv2d(1, dim, kernel_size=3, dilation=1, padding=1)
         self.conv2 = nn.Conv2d(dim, dim, kernel_size=3, dilation=1, padding=1)
-        self.last  = nn.Conv1d(dim, dim, kernel_size=1, dilation=1)
+        self.last  = nn.Conv1d(dim, CE, kernel_size=1, dilation=1)
         
         width      = int(math.floor(dim / scale))
         self.scale = scale
@@ -46,7 +47,7 @@ class MFAmodule(nn.Module):
         self.convs = nn.ModuleList(convs)
 
         for i in range(self.scale):
-            att_TDNNs.append(att_TDNN(width, D))
+            att_TDNNs.append(att_TDNN(width, D, CE))
         self.att_TDNNs = nn.ModuleList(att_TDNNs)
         self.width     = width
         
@@ -68,5 +69,6 @@ class MFAmodule(nn.Module):
             conv_outs.append(sp)  
             x = torch.cat((x, conv_outs[i]),1)
      
-        x = self.last(x.squeeze(-2))
+        x = x.squeeze(-2)
+        x = self.last(x) + x
         return x
