@@ -1,4 +1,5 @@
 ### Detials will coming soon. (Updating)
+![Overviwes of DS-TDNN](/Figs/arch.png)
 ![](/Figs/Configs.png)
 ![](/Figs/VoxEER.png)
 ![](/Figs/SITW.png)
