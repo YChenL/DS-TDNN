@@ -56,7 +56,7 @@ class GlobalBlock(nn.Module):
 #         self.gf = SparseGF(dim, T, dropout=dropout) # Global-aware filters with sparse regularization
 #         self.gf = DGF(dim, T, K=K) # Dynamic global-aware filters
 #         self.gf = GF(dim, T) # Global-aware filters
-#         self.gf = MSA(num_attention_heads=K, input_size=dim, input_size=dim) # Multi-head self-attention
+#         self.gf = MSA(num_attention_heads=K, input_size=dim, hidden_size=dim) # Multi-head self-attention
 #         self.gf = LSTM(input_size=dim, hidden_size=dim, bias=False, bidirectional=False) # LSTM
         
         self.norm1 = nn.BatchNorm1d(dim)  
