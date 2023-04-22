@@ -92,7 +92,11 @@ class GlobalBlock(nn.Module):
         x = self.act(x)
         x = self.norm1(x) 
         
+        # if self.gf == SA or LSTM, we need to transform the input tokens x
+        # x = x.permute(0,2,1)
         x = self.gf(x) 
+        # x = x.permute(0,2,1)
+       
         x = self.act(x)      
         x = self.norm2(x)
         
