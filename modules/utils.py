@@ -1,7 +1,7 @@
 import torch
 import torch.nn as nn
 import torch.nn.functional as F
-
+import pynvml
 
 
 def get_dwconv1d(dim, kernel, bias):
@@ -300,3 +300,14 @@ def add_optional_chunk_mask(xs: torch.Tensor, masks: torch.Tensor,
     else:
         chunk_masks = masks
     return chunk_masks
+
+
+
+def get_gpu_memory_usage():
+    """check GPU memory"""
+    pynvml.nvmlInit()
+    handle = pynvml.nvmlDeviceGetHandleByIndex(0)  # 选择第一个GPU
+    info = pynvml.nvmlDeviceGetMemoryInfo(handle)
+    gpu_memory = info.used
+    pynvml.nvmlShutdown()
+    return gpu_memory/(1024*1024*1024*8) #GB
