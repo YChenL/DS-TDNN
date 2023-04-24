@@ -6,7 +6,7 @@ This repo includes several implements of SOTA front-end model for ASV
 4. [MFA-Conformer](https://github.com/zyzisyz/mfa_conformer) (Official)
 5. [DS-TDNN](https://arxiv.org/pdf/2303.11020v2.pdf) (Ours)
 
-and some popular loss functions 
+and some popular loss functions for ASV
 1. [AMSoftmax](https://arxiv.org/pdf/1801.05599.pdf)
 2. [AAMSoftmax](https://openaccess.thecvf.com/content_CVPR_2019/papers/Deng_ArcFace_Additive_Angular_Margin_Loss_for_Deep_Face_Recognition_CVPR_2019_paper.pdf) 
 3. [Sub-center Arcface](https://ibug.doc.ic.ac.uk/media/uploads/documents/eccv_1445.pdf)
