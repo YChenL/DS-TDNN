@@ -13,7 +13,9 @@ and some popular loss functions for ASV
 4. [ARMSoftmax](https://arxiv.org/pdf/2110.09116.pdf)
 
 ### Overviwes of DS-TDNN
+#### Architecture
 ![](/Figs/arch.png)
 ![](/Figs/Configs.png)
+#### Experiment Results
 ![](/Figs/VoxEER.png)
 ![](/Figs/SITW.png)
