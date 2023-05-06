@@ -151,6 +151,6 @@ class MyModel(nn.Module):
 # 		speaker_embedding = self.speaker_encoder.forward(data.cuda(), aug = True)
 # 		nloss, _ = self.speaker_loss.forward(speaker_embedding, labels)      
 # 		nloss.backward(retain_graph=True, create_graph=True)
-#         grad1 = self.speaker_encoder.glayer1.gf.complex_weight.grad
+#        	grad1 = self.speaker_encoder.glayer1.gf.complex_weight.grad
 # 		self.optim.step()
     
