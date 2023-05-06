@@ -5,10 +5,10 @@ from .tools import *
 
 
 
-class AAMsoftmax(nn.Module):
+class AAMSoftmax(nn.Module):
     def __init__(self, n_class, m, s):
         
-        super(AAMsoftmax, self).__init__()
+        super(AAMSoftmax, self).__init__()
         self.m = m
         self.s = s
         self.weight = torch.nn.Parameter(torch.FloatTensor(n_class, 192), requires_grad=True)
