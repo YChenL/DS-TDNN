@@ -4,7 +4,9 @@ This part is used to train the speaker model and evaluate the performances
 
 import torch, sys, os, tqdm, numpy, soundfile, time, pickle
 import torch.nn as nn
+import torch.nn.functional as F
 from loss import *
+from loss.tools import *
 from Models import *
 from torch.cuda.amp import autocast, GradScaler
                 
