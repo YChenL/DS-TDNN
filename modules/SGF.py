@@ -17,7 +17,6 @@ class SparseGF(nn.Module):
         
     def forward_(self, x):
         B, C, T = x.shape
-        x = self.pre_norm(x)
         x = torch.fft.rfft(x, dim=-1, norm='ortho')
         weight = self.complex_weight # [K, C, T//2+1, 2]
         if not weight.shape[2] == x.shape[-1]:
@@ -39,6 +38,4 @@ class SparseGF(nn.Module):
         weight = torch.view_as_complex(weight) 
         x = x * weight
         x = torch.fft.irfft(x, n=T, dim=-1, norm='ortho') 
-        x = self.post_norm(x)
-        return x    
-    
+        return x   
