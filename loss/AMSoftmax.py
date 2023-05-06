@@ -1,7 +1,7 @@
 import torch
 import torch.nn as nn
 import torch.nn.functional as F
-from .tool import accuracy
+from .tools import accuracy
 
 
 
