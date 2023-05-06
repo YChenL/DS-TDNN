@@ -4,14 +4,11 @@ This part is used to train the speaker model and evaluate the performances
 
 import torch, sys, os, tqdm, numpy, soundfile, time, pickle
 import torch.nn as nn
-from tools import *
 from loss import *
-from model_new import ECAPA_TDNN
-# from model3 import Hor_TDNN
-from dual_TDNN import DS_TDNN, DS_TDNN_alter
-from conformer import conformer
+from Models import *
 from torch.cuda.amp import autocast, GradScaler
-                
+       
+	
 
 class MyModel(nn.Module):
 	def __init__(self, lr, lr_decay, C , n_class, m, s, test_step, mixedprec, **kwargs):
