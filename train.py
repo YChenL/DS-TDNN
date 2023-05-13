@@ -54,7 +54,7 @@ modelfiles.sort()
 
 #Only do evaluation, the initial_model is necessary
 if args.eval == True:
-	s = ECAPAModel(**vars(args))
+	s = MyModel(**vars(args))
 	print("Model %s loaded from previous state!"%args.initial_model)
 	s.load_parameters(args.initial_model)
 	EER, minDCF = s.eval_network(eval_list = args.eval_list, eval_path = args.eval_path)
@@ -64,7 +64,7 @@ if args.eval == True:
 If initial_model is exist, system will train from the initial_model
 if args.initial_model != "":
 	print("Model %s loaded from previous state!"%args.initial_model)
-	s = ECAPAModel(**vars(args))
+	s = MyModel(**vars(args))
 	s.load_parameters(args.initial_model)
 	epoch = 1
 
@@ -72,7 +72,7 @@ if args.initial_model != "":
 elif len(modelfiles) >= 1:
 	print("Model %s loaded from previous state!"%modelfiles[-1])
 	epoch = int(os.path.splitext(os.path.basename(modelfiles[-1]))[0][6:]) + 1
-	s = ECAPAModel(**vars(args))
+	s = MyModel(**vars(args))
 	s.load_parameters(modelfiles[-1])
 # Otherwise, system will train from scratch
 else:
