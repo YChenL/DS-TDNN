@@ -63,7 +63,7 @@ class Sparse(nn.Module):
             mask   = (torch.rand(x.shape[:-1]) > self.sparse).float().cuda()
             mask_f = mask.unsqueeze(-1).expand(x.shape)
             
-        return mask_f*x, (1.0-mask_f)*(x.abs().mean())
+        return mask_f, (1.0-mask_f)*(x.abs().mean())
     
         
 
