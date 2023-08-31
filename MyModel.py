@@ -14,7 +14,7 @@ from torch.cuda.amp import autocast, GradScaler
 class MyModel(nn.Module):
 	def __init__(self, lr, lr_decay, C , n_class, m, s, test_step, mixedprec, **kwargs):
 		super(MyModel, self).__init__()
-		## Front-edn
+		## Front-end
 		self.speaker_encoder = DS_TDNN(C = C).cuda() 
 		# self.speaker_encoder = ECAPA(C = C).cuda()
 		# self.speaker_encoder = MFA_TDNN(C = C).cuda()
